@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'rest_framework',
+    'dists',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +76,8 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# Use Following for passing Travis CI
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -81,9 +85,14 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASS'),
+        'PORT': 5432,
     }
 }
+
 '''
+
+# Use Following for Simulation
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
