@@ -1,0 +1,18 @@
+Heroku
+
+> heroku container:push web --app fathomless-shelf-13060
+> heroku container:release web --app fathomless-shelf-13060
+
+Docker
+> docker-compose run app sh -c "python manage.py createsuperuser"
+
+Go inside Postgres
+> docker exec -it c26d7cf77aaf /bin/bash
+Change user
+> psql -U postgres 
+> \du
+> \l 
+> \c app
+> \dt
+> \d dists_distribution
+> select * from dists_distribution limit 10;

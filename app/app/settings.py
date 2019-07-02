@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +28,7 @@ SECRET_KEY = '98q9ej2%t_nk%jc%v&(t*w*w(@=m2go)z=7qz_jp8prfar4=y)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://fathomless-shelf-13060.herokuapp.com/']
 
 
 # Application definition
@@ -77,7 +80,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 # Use Following for passing Travis CI
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -88,9 +91,26 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-
 '''
 
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'ec2-54-243-208-234.compute-1.amazonaws.com',
+        'NAME': 'd7sprg8n3j41eh',
+        'USER': 'pmjeyhgfekoxts',
+        'PASSWORD': '5a14c840690533d4280eb0535b9368cedcda2341192f8b7d867da9d6edca2445',
+        'PORT': 5432,
+    }
+}
+'''
+DATABASES = {} 
+DATABASES['default'] = dj_database_url.config(default='postgres://pmjeyhgfekoxts:5a14c840690533d4280eb0535b9368cedcda2341192f8b7d867da9d6edca2445@ec2-54-243-208-234.compute-1.amazonaws.com:5432/d7sprg8n3j41eh')
+
+
+
+'''
 # Use Following for Simulation
 
 DATABASES = {
@@ -143,3 +163,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

@@ -12,10 +12,13 @@ RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt
 RUN apk del .tmp-build-deps
 
+CMD python3 manage.py runserver 0.0.0.0:$PORT
+
 RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
 
 RUN adduser -D user
 USER user
+
 
